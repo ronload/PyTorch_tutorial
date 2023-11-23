@@ -7,6 +7,12 @@ ROOT_PATH = "test_dataset/train"
 
 class Sample:
     def __init__(self, name, image, label):
+        """
+        Represent a sample in the dataset.
+        :param name:
+        :param image:
+        :param label:
+        """
         self.name = name
         self.image = image
         self.label = label

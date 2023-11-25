@@ -13,7 +13,7 @@ image_PIL = Image.open(image_path)
 # ``transforms.ToTensor()``
 trans_ToTensor = transforms.ToTensor()  # define a transformer
 image_tensor = trans_ToTensor(image_PIL)
-writer.add_image("image(PIL) -> image(tensor)", image_tensor, 1)
+writer.add_image("image(PIL) -> image(tensor)(Original image)", image_tensor, 1)
 
 # ``transforms.Normalize()``
 print(image_tensor[0][0][0])

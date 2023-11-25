@@ -2,12 +2,14 @@
 
 class Person:
 
-    def __call__(self, name):
-        print("__call__ " + "Hello " + name)
+    @staticmethod
+    def __call__(name):
+        print(f"__call__: Hello, {name}")
 
-    def hello(self, name):
-        print("Hello " + name)
+    @staticmethod
+    def hello(name):
+        print(f"Hello, {name}")
 
-person = Person()
-person("Python")
-person.hello("Pytorch")
+person = Person()  # System execute `Person.__init__(self)`
+person("Python")  # System execute `person.__call__("Python")
+person.hello("Pytorch")  # System execute `person.hello("Python")

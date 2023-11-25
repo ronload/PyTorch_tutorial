@@ -34,7 +34,7 @@ class MyDataset(Dataset):
         return len(self.names)
     @staticmethod
     def __get_names__(label):
-        folder = os.listdir(os.path.join(ROOT_PATH, label + "_image"))
+        folder = sorted(os.listdir(os.path.join(ROOT_PATH, label + "_image")))
         names = []
         for file_name in folder:
             names.append(file_name.split(".jpg")[0])
@@ -42,7 +42,7 @@ class MyDataset(Dataset):
     @staticmethod
     def __get_images__(label):
         path = os.path.join(ROOT_PATH, label + "_image")
-        image_folder = os.listdir(path)
+        image_folder = sorted(os.listdir(path))
         images = []
         for image_file in image_folder:
             images.append(Image.open(os.path.join(path, image_file)))
@@ -50,7 +50,7 @@ class MyDataset(Dataset):
     @staticmethod
     def __get_labels__(label):
         path = os.path.join(ROOT_PATH, label + "_label")
-        label_folder = os.listdir(path)
+        label_folder = sorted(os.listdir(path))
         labels = []
         for label_file in label_folder:
             label_file_path = os.path.join(path, label_file)

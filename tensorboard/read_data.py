@@ -1,24 +1,18 @@
+import os
 import numpy as np
 from PIL import Image
 from torch.utils.tensorboard import SummaryWriter
 
-# define writer
-writer = SummaryWriter(log_dir="logs")
+writer = SummaryWriter("logs")
 
-# define path
-ant_image_path = "data/train/ants_image/0013035.jpg"
-bee_image_path = "data/train/bees_image/16838648_415acd9e3f.jpg"
+ANTS_IMAGE_PATH = "data/train/ants_image"
+image_folder = sorted(os.listdir(ANTS_IMAGE_PATH))
+step = 0
 
-# transform PIL image into np.array
-ant_nparray = np.array(Image.open(ant_image_path))
-bee_nparray = np.array(Image.open(bee_image_path))
+for image_file in image_folder:
+    ant_np_image = np.array(Image.open(os.path.join(ANTS_IMAGE_PATH, image_file)))
+    if step < 10:
+        writer.add_image("First 10 ants", ant_np_image, step, dataformats="HWC")
+        step = step + 1
 
-# show tensorboard
-tag = "read_data"
-writer.add_image(tag, ant_nparray, 1, dataformats="HWC")
-writer.add_image(tag, bee_nparray, 2, dataformats="HWC")
-
-# close writer
 writer.close()
-
-
